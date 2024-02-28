@@ -1,7 +1,5 @@
 package main
 
-import "fmt"
-
 type TreeNode struct {
 	Val   int
 	Left  *TreeNode
@@ -12,7 +10,6 @@ func isSameTree(p *TreeNode, q *TreeNode) bool {
 	var vis1, vis2 []int
 	inorder(p, &vis1)
 	inorder(q, &vis2)
-	fmt.Println(vis1, vis2)
 	if len(vis1) != len(vis2) {
 		return false
 	}
