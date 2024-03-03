@@ -21,12 +21,3 @@ func canConstruct(ransomNote string, magazine string) bool {
 	}
 	return true
 }
-
-func checkDict(m map[byte]int) bool {
-	for _, v := range m {
-		if v == 0 {
-			return false
-		}
-	}
-	return true
-}
