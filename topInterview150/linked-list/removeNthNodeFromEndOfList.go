@@ -5,7 +5,7 @@ type ListNode struct {
 	Next *ListNode
 }
 
-// soluzione decente, sono autistico
+// soluzione decente
 func removeNthFromEnd(head *ListNode, n int) *ListNode {
 	var listLength int
 	curr := head
