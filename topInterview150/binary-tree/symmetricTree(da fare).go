@@ -7,42 +7,64 @@ type TreeNode struct {
 }
 
 func isSymmetric(root *TreeNode) bool {
-	var v []int
-	inorder(root, &v)
-	//fmt.Println(&v)
-	j := len(v) - 1
-	// controllo se "visita inorder è palindroma", se non lo è,
-	// l'albero non è simmetrico
-	for i := 0; i < len(v)/2; i++ {
-		if (v)[i] != (v)[j] {
-			return false
+	var currLevel []TreeNode
+	var allLevels [][]TreeNode
+	currLevel = append(currLevel, *root)
+
+	for len(currLevel) > 0 {
+		allLevels = append(allLevels, currLevel)
+		var nextLevel []TreeNode
+		for _, n := range currLevel {
+			if n.Left != nil {
+				nextLevel = append(nextLevel, *n.Left)
+			} else {
+				nextLevel = append(nextLevel, TreeNode{})
+			}
+			if n.Right != nil {
+				nextLevel = append(nextLevel, *n.Right)
+			} else {
+				nextLevel = append(nextLevel, TreeNode{})
+			}
 		}
-		j--
-	}
-	// controllo se i due sottoalberi sono uguali
-	rootIndex := len(v) / 2
-	subTree1 := v[:rootIndex]
-	subTree2 := v[rootIndex+1:]
-	if len(subTree1) == 1 && len(subTree2) == 1 {
-		if subTree1[0] == subTree2[0] {
-			return true
+		currLevel = nextLevel
+		if lastLevel(currLevel) {
+			break
 		}
 	}
-	for i := range subTree1 {
-		if subTree1[i] != subTree2[i] {
-			return true
-		} else {
-			return false
+	if isPalindrome(allLevels) {
+		return true
+	}
+	return false
+}
+
+func isPalindrome(allLevelsNodes [][]TreeNode) bool {
+	for rowIndex, row := range allLevelsNodes {
+		if rowIndex == 0 {
+			continue
+		}
+		var j int = len(row) - 1
+		for i := 0; i < len(row)/2; i++ {
+			if row[i].Val != row[j].Val {
+				return false
+			}
+			j--
 		}
 	}
 	return true
 }
 
-func inorder(r *TreeNode, visited *[]int) {
-	if r == nil {
-		return
+// ritorna true se l'array contiene solo zeri, quindi siamo all'ultimo
+// livello dell'albero
+func lastLevel(level []TreeNode) bool {
+	var zero bool = true
+	for _, n := range level {
+		if n.Val != 0 {
+			zero = false
+			break
+		}
 	}
-	inorder(r.Left, visited)
-	*visited = append(*visited, r.Val)
-	inorder(r.Right, visited)
+	if !zero {
+		return false
+	}
+	return true
 }
