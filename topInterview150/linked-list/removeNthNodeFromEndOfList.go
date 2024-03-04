@@ -34,7 +34,8 @@ func removeNthFromEnd(head *ListNode, n int) *ListNode {
 // soluzione con due indici l e r, serve un nodo "dummy", che
 // inizializziamo in testa alla lista (prima di head), facciamo partire
 // i due indici l e r rispettivamente da dummy e head.
-// il primo ciclo serve a far arrivare l'indice r in un nodo.
+// il primo ciclo serve a far arrivare l'indice r in un nodo
+// tale che la distanza tra l e r sia n.
 // dopo facciamo scorrere contemporaneamente l e r e appena
 // r raggiunge la fine della lista (nil), l avrà raggiunto il
 // nodo prima del nodo da cancellare, e cancelliamo il nodo dopo.
