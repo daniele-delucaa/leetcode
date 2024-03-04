@@ -1,10 +1,21 @@
-package main
-
-type ListNode struct {
-	Val  int
-	Next *ListNode
+func deleteDuplicates(head *ListNode) *ListNode {
+	if head == nil {
+		return nil
+	}
+	curr := head
+	next := head.Next
+	for next != nil {
+		if curr.Val == next.Val {
+			curr.Next = next.Next
+			next = next.Next
+			continue
+		}
+		curr, next = next, next.Next
+	}
+	return head
 }
 
+// codice fatto da me
 func deleteDuplicates(head *ListNode) *ListNode {
 	if head == nil || head.Next == nil {
 		return head
