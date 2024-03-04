@@ -15,5 +15,3 @@ func invertTree(root *TreeNode) *TreeNode {
 	invertTree(root.Right)
 	return root
 }
-
-// [[4], [7, 2], [9, 6, 3, 1]]
