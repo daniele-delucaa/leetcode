@@ -41,3 +41,19 @@ func getIntersectionNode(headA, headB *ListNode) *ListNode {
 	}
 	return nil
 }
+
+// soluzione migliore, uso UNA sola mappa sia per le visite sulla
+// lista A che sulla lista B
+func getIntersectionNode(headA, headB *ListNode) *ListNode {
+	occ := make(map[*ListNode]bool)
+	for n := headA; n != nil; n = n.Next {
+		occ[n] = true
+	}
+
+	for n := headB; n != nil; n = n.Next {
+		if occ[n] {
+			return n
+		}
+	}
+	return nil
+}
