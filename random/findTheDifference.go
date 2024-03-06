@@ -30,3 +30,22 @@ func findTheDifference(s string, t string) byte {
 	}
 	return b
 }
+
+// fa le due somme dei valori in byte di ogni carattere
+// delle stringhe, se facciamo la differenza delle due somme
+// totali troviamo il valore del carattere in più sulla stringa
+// t.
+func findTheDifference(s string, t string) byte {
+	sumS, sumT := 0, 0
+	for _, i := range s {
+		sumS += int(i)
+	}
+
+	for _, i := range t {
+		sumT += int(i)
+	}
+
+	diff := sumT - sumS
+
+	return byte(diff)
+}
