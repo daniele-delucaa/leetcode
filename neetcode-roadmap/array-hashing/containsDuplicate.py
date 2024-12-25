@@ -3,12 +3,8 @@ class Solution:
         dict = {}
         for x in nums:
             if x in dict:
-                dict[x] += 1
+                return True
             else:
                 dict[x] = 1
-
-        for y in dict:
-            if dict[y] > 1:
-                return True
             
         return False
