@@ -1,3 +1,6 @@
+# if token[i] is a number, push it into the stack, if it is
+# an "oparator", pop the last two numbers and do the operations, 
+# lastly push the result of the operation in to the stack
 class Solution:
     def evalRPN(self, tokens: List[str]) -> int:
         number_stack = []
