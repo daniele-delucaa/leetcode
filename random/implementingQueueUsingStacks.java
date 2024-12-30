@@ -1,30 +1,43 @@
-import java.util.ArrayList;
+import java.util.Stack;
 
 class MyQueue {
-    ArrayList<Integer> q;
+    private Stack<Integer> s1 = new Stack<>();
+    private Stack<Integer> s2 = new Stack<>();
+
     public MyQueue() {
-        q = new ArrayList<Integer>();
+        Stack s1 = new Stack<Integer>();
+        Stack s2 = new Stack<Integer>();
     }
     
     public void push(int x) {
-        q.add(x);
+        s1.push(x);
     }
     
+    // pushing all the elements of s1 in s2,
+    // at the end s2 will have the same elements 
+    // of s1 but in reversal order, the last element
+    // of s2 will be the element that was on top of s1, 
+    // so we want to pop that element
     public int pop() {
-        int res = q.get(0);
-        q.remove(0);
-        /*for (int i = 1; i < q.size()-1; i++){
-            q.set(i-1, q.get(i));
-        }*/
-        return res;
+        if (s2.isEmpty()) {
+            while (!s1.isEmpty()){
+                s2.push(s1.pop());
+            }
+        }
+        return s2.pop();
     }
     
     public int peek() {
-        return q.get(0);
+        if (s2.isEmpty()){
+            while (!s1.isEmpty()){
+                s2.push(s1.pop());
+            }
+        }
+        return s2.peek();
     }
     
     public boolean empty() {
-        return q.isEmpty();
+        return s1.isEmpty() && s2.isEmpty();
     }
 }
 
