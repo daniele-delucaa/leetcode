@@ -24,8 +24,7 @@ class Solution:
     def maxArea(self, height: List[int]) -> int:
         res = 0
         l, r = 0, len(height)-1
-        i = 0
-        while i < len(height):
+        while l < r:
             width = min(height[l], height[r])
             length = r - l
             v = width * length
@@ -35,6 +34,5 @@ class Solution:
                l += 1
             elif width == height[r]:
                r -= 1
-            i += 1
         return res
                 
