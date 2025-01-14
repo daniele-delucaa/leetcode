@@ -24,13 +24,13 @@ class Solution:
                         d[row[i]] = True
 
         # 3*3 checking
-        # defaultdict {key: [pos is the sub-cube], [num is the single cell we are iterating over]}
+        # defaultdict {key: [pos is a pair of value that indicates the sub-cube], [num is the single cell we are iterating over]}
         d2 = defaultdict(bool)
         for r in range(9):
             for c in range(9):
                 if board[r][c] == ".":
                     continue
-                pos = (r // 3, c // 3)
+                pos = (r // 3, c // 3)        
                 num = board[r][c]
                 key = (pos, num)
                 if key in d2:
