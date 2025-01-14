@@ -23,3 +23,19 @@ class Solution:
                     else:
                         d[row[i]] = True
 
+        # 3*3 checking
+        d2 = defaultdict(bool)
+        for r in range(9):
+            for c in range(9):
+                if board[r][c] == ".":
+                    continue
+                pos = (r // 3, c // 3)
+                num = board[r][c]
+                key = (pos, num)
+                if key in d2:
+                    return False 
+                else:
+                    d2[key] = True
+
+        return True
+
