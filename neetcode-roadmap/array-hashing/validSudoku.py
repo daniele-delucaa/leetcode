@@ -24,6 +24,7 @@ class Solution:
                         d[row[i]] = True
 
         # 3*3 checking
+        # defaultdict {key: [pos is the sub-cube], [num is the single cell]}
         d2 = defaultdict(bool)
         for r in range(9):
             for c in range(9):
