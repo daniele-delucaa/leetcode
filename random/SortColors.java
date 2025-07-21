@@ -1,7 +1,9 @@
 class sortColors {
 
     // Counting sort solution 
+    // Not in place, in-place required (use Dutch national flag's algorithm)
     // Time complexity: O(n)
+    // Space complexity: O(n)
     public void sortColors(int[] nums) {
         int max = 0;
         for (int i = 0; i < nums.length; i++){
